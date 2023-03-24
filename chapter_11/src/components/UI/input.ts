@@ -1,25 +1,18 @@
-enum EInput {
+export enum EInput {
     number = 'number',
 }
 
-interface IInputComponent {
+export interface IInputComponent {
     id: string
     label: string,
     input: IInput
 }
 
-interface IInput {
+export interface IInput {
     id: string,
     type: EInput.number,
     min: string,
     max: string,
     step: string,
     defaultValue: string
-}
-
-
-export {
-    EInput,
-    IInput,
-    IInputComponent
 }

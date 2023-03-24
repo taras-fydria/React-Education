@@ -19,19 +19,24 @@ const ModalOverlay: FC<{ children: ReactNode }> = props => {
     )
 }
 
-const portalElement = document.getElementById('overlays')
+const portalElement = document.querySelector('#overlays')
 
 
 interface IModal {
     onCloseModal(): void,
+
     children: ReactNode
 }
 
 const Modal: FC<IModal> = (props) => {
     return (
         <>
-            {ReactDOM.createPortal(<Backdrop onClick={props.onCloseModal}/>, portalElement)}
-            {ReactDOM.createPortal(<ModalOverlay>{props.children}</ModalOverlay>, portalElement)}
+            {portalElement && (
+                <>
+                    {ReactDOM.createPortal(<Backdrop onClick={props.onCloseModal}/>, portalElement)}
+                    {ReactDOM.createPortal(<ModalOverlay>{props.children}</ModalOverlay>, portalElement)}
+                </>
+            )}
         </>
     )
 }

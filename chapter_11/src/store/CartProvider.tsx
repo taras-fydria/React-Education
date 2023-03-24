@@ -1,9 +1,9 @@
-import React, {FC, ReactNode, ReducerStateWithoutAction, useReducer} from "react";
+import React, {FC, ReactNode, useReducer} from "react";
 import CartContext from "./cart-context";
 import cartReducer, {defaultCartState} from "./cart-reducer";
-import {CartReducerActions, ICartContext, ICartItem, ICartState} from "./types";
+import {CartReducerActions, ICartContext, ICartItem} from "./types";
 
-const initializer = (state) => state
+const initializer = (state:any) => state
 
 const CartProvider: FC<{ children: ReactNode }> = (props) => {
     const [cartState, dispatchCartAction] = useReducer(cartReducer, defaultCartState, initializer)

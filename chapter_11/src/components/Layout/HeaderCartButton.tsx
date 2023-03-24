@@ -1,7 +1,8 @@
 import {FC, useContext} from "react";
 import CartIcon from "../Cart/CartIcon";
 import classes from "./HeaderCartButton.module.css";
-import CartContext, {ICartContext} from "../../store/cart-context";
+import CartContext from "../../store/cart-context";
+import {ICartContext} from "../../store/types";
 
 interface IHeaderCartButton {
     onClick(): void

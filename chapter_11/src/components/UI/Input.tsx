@@ -1,8 +1,10 @@
-import React, {FC, ForwardedRef, LegacyRef, Ref} from "react";
+import React, {
+    forwardRef,
+} from "react";
 import classes from "./Input.module.css";
-import {IInput, IInputComponent} from "./input";
+import {IInputComponent} from "./input";
 
-const Input: ForwardedRef<IInputComponent> = React.forwardRef(({input, label, id}, ref) => {
+const Input = forwardRef<HTMLInputElement, IInputComponent>(({input, label, id}, ref) => {
     return (
         <div className={classes.input}>
             <label htmlFor={input.id}>{label}</label>

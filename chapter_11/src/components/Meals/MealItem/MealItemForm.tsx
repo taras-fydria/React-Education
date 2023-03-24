@@ -1,16 +1,16 @@
-import {FC, FormEvent, useRef, useState} from "react";
+import {createRef, FC, FormEvent, useState} from "react";
 import classes from "./MealItemForm.module.css";
 import Input from "../../UI/Input";
 import {EInput} from "../../UI/input";
 
 const MealItemForm: FC<{ onAddToCArt(number: number): void }> = ({onAddToCArt}) => {
     const [amountIsValid, setAmountISValid] = useState<boolean>(true)
-    const amountInputRef = useRef<HTMLInputElement>()
+    const amountInputRef = createRef<HTMLInputElement>()
     const submitHandler = (event: FormEvent<HTMLFormElement>): void => {
         event.preventDefault()
-        const enteredAmount = amountInputRef.current.value
-        const enteredAmountNumber = +enteredAmount
-        if (enteredAmount.trim().length === 0 || enteredAmountNumber < 1 || enteredAmountNumber > 5) {
+        const enteredAmount = amountInputRef.current?.value
+        const enteredAmountNumber = enteredAmount ? +enteredAmount : 0
+        if (enteredAmount?.trim().length === 0 || enteredAmountNumber < 1 || enteredAmountNumber > 5) {
             setAmountISValid(false)
             return
         }
@@ -29,7 +29,7 @@ const MealItemForm: FC<{ onAddToCArt(number: number): void }> = ({onAddToCArt}) 
                     defaultValue: '1',
                     min: '1'
                 }}
-            />
+                id={'amount'}/>
             <button>+ Add</button>
             {!amountIsValid && (
                 <p>
