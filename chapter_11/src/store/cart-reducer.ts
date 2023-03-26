@@ -1,7 +1,16 @@
 import {Reducer} from "react";
 import {CartAction, CartReducerActions, ICartItem, ICartState} from "./types";
+import CartStorage from "./cart-storage";
+
+const defaultCartState: ICartState = {
+    items: [],
+    totalAmount: 0
+}
+
+export const cartStorage = new CartStorage(defaultCartState)
 
 const cartReducer: Reducer<ICartState, CartAction> = (state, action): ICartState => {
+
     if (action.type === CartReducerActions.ADD) {
         const updatedTotalAmount = state.totalAmount + action.item.price * action.item.amount
         const existingCArtItemIndex = state.items.findIndex(item => item.id === action.item.id)
@@ -19,11 +28,11 @@ const cartReducer: Reducer<ICartState, CartAction> = (state, action): ICartState
             updatedItems = state.items.concat(action.item)
         }
 
-        return {
+        cartStorage.setStorage({
             ...state,
             items: updatedItems,
             totalAmount: updatedTotalAmount
-        }
+        })
     } else if (action.type === CartReducerActions.REMOVE) {
         const existingCArtItemIndex = state.items.findIndex(item => item.id === action.id)
         const existingCartItem = state.items[existingCArtItemIndex]
@@ -36,18 +45,14 @@ const cartReducer: Reducer<ICartState, CartAction> = (state, action): ICartState
             updatedItems = [...state.items]
             updatedItems[existingCArtItemIndex] = updatedItem
         }
-        return {
+
+        cartStorage.setStorage({
             items: updatedItems,
             totalAmount: updatedTotalAmount
-        }
-    } else {
-        return {...state}
+        })
     }
-}
 
-export const defaultCartState: ICartState = {
-    items: [],
-    totalAmount: 0
+    return cartStorage.getStorage()
 }
 
 export default cartReducer
