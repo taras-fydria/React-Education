@@ -1,15 +1,17 @@
-import {FC} from "react";
+import React, {FC} from "react";
+import MyParagraph from "./MyParagraph";
 
-interface IDemo {
+interface DemoComponent {
     show: boolean
 }
 
-const Demo: FC<IDemo> = (props) => {
+const Demo: FC<DemoComponent> = (props) => {
+    console.log('demo started')
     return (
-        <p>
-            {props.show ? 'This is new!' : ''}
-        </p>
+        <MyParagraph>
+            {props.show && 'This is new!'}
+        </MyParagraph>
     )
 }
 
-export default Demo
+export default React.memo(Demo)

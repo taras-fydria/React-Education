@@ -1,5 +1,5 @@
 import classes from './Button.module.css';
-import {FC, ReactNode} from "react";
+import React, {FC, ReactNode} from "react";
 
 export enum EButton {
     SUBMIT = 'submit',
@@ -17,6 +17,7 @@ interface IButton {
 }
 
 const Button: FC<IButton> = (props) => {
+    console.log('button running')
     return (
         <button
             type={props.type || 'button'}
@@ -29,4 +30,4 @@ const Button: FC<IButton> = (props) => {
     );
 };
 
-export default Button;
+export default React.memo(Button);
