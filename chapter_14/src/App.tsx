@@ -2,10 +2,6 @@ import MoviesList from './components/MoviesList';
 import './App.css';
 import {IMovie} from "./types";
 import {useCallback, useEffect, useState} from "react";
-import PagedResults from "swapi-typescript/dist/models/PagedResults";
-import Film from "swapi-typescript/dist/models/Film";
-import {Simulate} from "react-dom/test-utils";
-import error = Simulate.error;
 import AddMovie from "./components/AddMovie.tsx";
 
 function App() {
@@ -16,21 +12,22 @@ function App() {
     const fetchMoviesHandler = useCallback(async () => {
         try {
             setIsLoading(true)
-            const response = await fetch('https://swapi.dev/api/films/')
+            const response = await fetch('https://react-education-f6d0c-default-rtdb.firebaseio.com/movies.json')
             if (!response.ok || response.status !== 200) {
                 throw new Error(response.statusText)
             }
-            const data: PagedResults<Film> = await response.json()
-            const transformedMovies = data.results.map<IMovie>(movieData => {
-                    return {
-                        id: movieData.episode_id,
-                        title: movieData.title,
-                        openingText: movieData.opening_crawl,
-                        releaseDate: movieData.release_date
-                    }
-                }
-            )
-            setMovies(transformedMovies)
+            const data = await response.json()
+            const loadedMovies: IMovie[] = []
+
+            for (const key in data) {
+                loadedMovies.push({
+                    id: key,
+                    title: data[key].title,
+                    releaseDate: data[key].releaseDate,
+                    openingText: data[key].openingText
+                })
+            }
+            setMovies(loadedMovies)
         } catch (e) {
             setIsError(e.message)
         } finally {
@@ -42,8 +39,22 @@ function App() {
         fetchMoviesHandler()
     }, [fetchMoviesHandler])
 
-    function addMovieHandler(movie) {
-        console.log(movie);
+    async function addMovieHandler(movie) {
+        try {
+            const response = await fetch('https://react-education-f6d0c-default-rtdb.firebaseio.com/movies.json', {
+                method: 'POST',
+                body: JSON.stringify(movie),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            if (!response.ok || response.status !== 200) throw new Error(response.statusText)
+            const data = await response.json()
+            console.log(data)
+
+        } catch (e) {
+
+        }
     }
 
     let content = <p>Found no movies.</p>;

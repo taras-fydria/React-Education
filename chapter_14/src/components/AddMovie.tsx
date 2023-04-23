@@ -1,18 +1,19 @@
-import {useRef} from 'react';
+import {MutableRefObject, useRef} from 'react';
 
 import classes from './AddMovie.module.css';
+import {IMovie} from "../types";
 
 function AddMovie(props) {
-    const titleRef = useRef('');
-    const openingTextRef = useRef('');
-    const releaseDateRef = useRef('');
+    const titleRef = useRef() as MutableRefObject<HTMLInputElement>
+    const openingTextRef = useRef() as MutableRefObject<HTMLTextAreaElement>;
+    const releaseDateRef = useRef() as MutableRefObject<HTMLInputElement>;
 
     function submitHandler(event) {
         event.preventDefault();
 
         // could add validation here...
 
-        const movie = {
+        const movie: IMovie = {
             title: titleRef.current.value,
             openingText: openingTextRef.current.value,
             releaseDate: releaseDateRef.current.value,
