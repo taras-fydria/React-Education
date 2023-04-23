@@ -1,5 +1,4 @@
-import {Component, FC, useState} from 'react';
-import User from './User';
+import {Component} from 'react';
 import classes from './Users.module.css';
 import {UsersProps, UsersState} from "../types";
 import UserList from "./UserList.tsx";
@@ -13,7 +12,7 @@ class Users extends Component<UsersProps, UsersState> {
         }
     }
 
-    componentDidMount() {
+    componentDidUpdate(prevProps: Readonly<UsersProps>, prevState: Readonly<UsersState>, snapshot?: any) {
         if (this.props.usersArr.length === 0){
             throw new Error('No users provided!')
         }
@@ -26,7 +25,8 @@ class Users extends Component<UsersProps, UsersState> {
                 showUsers: !curState.showUsers
             }
         })
-    };
+    }
+    ;
 
     render() {
         return (

@@ -1,6 +1,6 @@
 import UserFinder from './components/UserFinder';
 import {IUser, IUserContext} from "./types";
-import UsersContext from "./store/users-context.ts";
+import {UsersContext} from "./store";
 
 const DUMMY_USERS:IUser[] = [
     { id: 'u1', name: 'Max' },

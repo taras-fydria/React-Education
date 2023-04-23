@@ -3,8 +3,8 @@ import {Fragment, Component, ChangeEvent} from 'react';
 import Users from './Users';
 import classes from './UserFinder.module.css';
 import {UserFinderProps, UserFinderState} from "../types";
-import UsersContext from "../store/users-context.ts";
 import ErrorBoundary from "./ErrorBoundary.tsx";
+import {UsersContext} from "../store";
 
 class UserFinder extends Component<UserFinderProps, UserFinderState> {
     static contextType = UsersContext
