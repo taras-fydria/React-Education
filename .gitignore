@@ -1,2 +1,4 @@
 /.idea
 ./**/node_modules
+/chapter_16_forms/package-lock.json
+/chapter_16_forms/.gitignore
