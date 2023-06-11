@@ -12,7 +12,6 @@ const SimpleInput = () => {
         resetValue: resetNameValue
     } = useInput((value) => typeof value === 'string' && value.trim() !== '')
 
-
     const {
         value: emailValue,
         hasError: emailHasError,

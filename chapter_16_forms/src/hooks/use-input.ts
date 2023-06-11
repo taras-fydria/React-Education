@@ -1,24 +1,50 @@
-import {ChangeEvent, useState} from "react";
-import {UseInput} from "../types";
+import {ChangeEvent, Reducer, useReducer} from "react";
+import {SimpleInputAction, SimpleInputReducerActions, SimpleInputState, UseInput} from "../types";
+
+const initialState: SimpleInputState = {
+    value: '',
+    isTouched: false
+}
+
+
+const inputStateReducer: Reducer<SimpleInputState, SimpleInputAction> = (state, action): SimpleInputState => {
+    switch (action.type) {
+        case SimpleInputReducerActions.CHANGE:
+            return {
+                ...state,
+                value: action.value,
+            }
+        case SimpleInputReducerActions.BLUER:
+            return {
+                ...state,
+                isTouched: action.touched
+            }
+        case SimpleInputReducerActions.RESET:
+            return {
+                isTouched: false,
+                value: ''
+            }
+    }
+}
 
 const useInput = (validateValue: (value: FormDataEntryValue) => boolean): UseInput => {
-    const [enteredValue, setEnteredValue] = useState<string>('')
-    const [isTouched, setIsTouched] = useState<boolean>(false)
+    const [inputState, dispatch] = useReducer(inputStateReducer, initialState)
 
-    const valueIsValid: boolean = validateValue(enteredValue)
-    const hasError = !valueIsValid && isTouched
 
-    const inputChangeHandler = (event: ChangeEvent<HTMLInputElement>) => setEnteredValue(event.target.value)
+    const valueIsValid: boolean = validateValue(inputState.value)
+    const hasError = !valueIsValid && inputState.isTouched
 
-    const inputBluerHandler = () => setIsTouched(true)
+    const inputChangeHandler = (event: ChangeEvent<HTMLInputElement>) => dispatch({
+        type: SimpleInputReducerActions.CHANGE,
+        value: event.target.value
+    })
 
-    const resetValue = () => {
-        setEnteredValue('')
-        setIsTouched(false)
-    }
+    const inputBluerHandler = () => dispatch({type: SimpleInputReducerActions.BLUER, touched: true})
+
+    const resetValue = () => dispatch({type: SimpleInputReducerActions.RESET})
 
     return {
-        value: enteredValue,
+        value: inputState.value,
         isValid: valueIsValid,
         hasError,
         inputChangeHandler,
