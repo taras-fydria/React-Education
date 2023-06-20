@@ -27,7 +27,7 @@ export default class CartStorage implements ICartStorage {
 
     getStorage(): ICartState {
         const storageState = window.localStorage.getItem(this.key)
-        return JSON.parse(storageState)
+        return JSON.parse(storageState ? storageState : '')
     }
 
     get storageExist(): boolean {
