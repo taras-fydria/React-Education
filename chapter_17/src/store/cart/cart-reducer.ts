@@ -1,6 +1,6 @@
 import {Reducer} from "react";
-import {CartAction, CartReducerActions, ICartItem, ICartState} from "./types";
 import CartStorage from "./cart-storage";
+import {CartAction, CartReducerActions, ICartItem, ICartState} from "../../types";
 
 const defaultCartState: ICartState = {
     items: [],
@@ -49,6 +49,11 @@ const cartReducer: Reducer<ICartState, CartAction> = (state, action): ICartState
         cartStorage.setStorage({
             items: updatedItems,
             totalAmount: updatedTotalAmount
+        })
+    } else if (action.type == CartReducerActions.CLEAR){
+        cartStorage.setStorage({
+            items: [],
+            totalAmount: 0
         })
     }
 

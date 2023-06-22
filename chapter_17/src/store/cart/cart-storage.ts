@@ -1,4 +1,4 @@
-import {ICartState, ICartStorage} from "./types";
+import {ICartState, ICartStorage} from "../../types";
 
 export default class CartStorage implements ICartStorage {
 

@@ -1,4 +1,4 @@
-import {TMeals} from "./meals-types";
+import {TMeals} from "../../types";
 
 const DUMMY_MEALS: TMeals = [
     {

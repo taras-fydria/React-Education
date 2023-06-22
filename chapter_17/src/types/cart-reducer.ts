@@ -1,4 +1,4 @@
-import {IMeal} from "../../components/Meals/meals-types";
+import {IMeal} from "./meals-types";
 
 export interface ICartItem extends IMeal {
     amount: number
@@ -11,7 +11,8 @@ export interface ICartState {
 
 export enum CartReducerActions {
     ADD,
-    REMOVE
+    REMOVE,
+    CLEAR
 }
 
 export interface CartDispatchAction {
@@ -27,4 +28,6 @@ export type CartAction =
 } | {
     type: CartReducerActions.REMOVE,
     id: string
+} | {
+    type: CartReducerActions.CLEAR,
 }

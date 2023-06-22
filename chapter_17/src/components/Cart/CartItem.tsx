@@ -1,6 +1,6 @@
-import {FC} from "react";
-import {ICartItem} from "../../store/types";
 import classes from './CartItem.module.css';
+import {ICartItem} from "../../types";
+import {FC} from "react";
 
 interface CartItemComponent extends ICartItem {
     onRemove(id: string): void,

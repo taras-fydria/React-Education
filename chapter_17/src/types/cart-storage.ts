@@ -6,5 +6,5 @@ export interface ICartStorage {
 
     getStorage(): ICartState
 
-    setStorage(state: ICartState)
+    setStorage(state: ICartState): void
 }

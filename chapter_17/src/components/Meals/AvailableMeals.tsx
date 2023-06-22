@@ -1,9 +1,8 @@
 import {FC, useEffect, useState} from "react";
-import useDummyMeals from "../../hook/useDummyMeals";
 import classes from './AvailableMeals.module.css'
 import Card from "../UI/Card";
 import MealItem from "./MealItem/MealItem";
-import {IMeal} from "./meals-types";
+import {IMeal} from "../../types";
 
 const AvailableMeals: FC = () => {
     const [mealState, setMealState] = useState<IMeal[]>([])

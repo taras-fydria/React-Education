@@ -1,8 +1,8 @@
 import {FC, useContext} from "react";
-import {IMeal} from "../meals-types";
 import MealItemForm from "./MealItemForm";
 import classes from './MealItem.module.css'
-import CartContext from "../../../store/cart-context";
+import {IMeal} from "../../../types";
+import {CartContext} from "../../../store";
 
 const MealItem: FC<IMeal> = (props) => {
     const cartCtx = useContext(CartContext)

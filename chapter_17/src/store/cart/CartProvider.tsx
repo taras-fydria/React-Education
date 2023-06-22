@@ -1,7 +1,7 @@
 import React, {FC, ReactNode, useReducer} from "react";
-import CartContext from "./cart-context";
 import cartReducer, {cartStorage} from "./cart-reducer";
-import {CartReducerActions, ICartContext, ICartItem} from "./types";
+import {CartReducerActions, ICartContext, ICartItem} from "../../types";
+import {CartContext} from "./cart-context";
 
 const initializer = (state: any) => state
 
@@ -16,11 +16,14 @@ const CartProvider: FC<{ children: ReactNode }> = (props) => {
         dispatchCartAction({type: CartReducerActions.REMOVE, id})
     }
 
+    const clearCartHandler = () => dispatchCartAction({type: CartReducerActions.CLEAR})
+
     const cartContext: ICartContext = {
         items: cartState.items,
         totalAmount: cartState.totalAmount,
         addItem: addItemToCartHandler,
-        removeItem: removeItemFromCartHAndler
+        removeItem: removeItemFromCartHAndler,
+        clearItems: clearCartHandler
     }
 
     return (

@@ -1,11 +1,7 @@
 import {FC, ReactNode} from "react";
 import classes from "./Modal.module.css";
 import ReactDOM from "react-dom";
-
-
-interface IBackdrop {
-    onClick(): void
-}
+import {IBackdrop, IModal} from "../../types";
 
 const Backdrop: FC<IBackdrop> = ({onClick}) => {
     return <div className={classes.backdrop} onClick={onClick}></div>
@@ -20,13 +16,6 @@ const ModalOverlay: FC<{ children: ReactNode }> = props => {
 }
 
 const portalElement = document.querySelector('#overlays')
-
-
-interface IModal {
-    onCloseModal(): void,
-
-    children: ReactNode
-}
 
 const Modal: FC<IModal> = (props) => {
     return (

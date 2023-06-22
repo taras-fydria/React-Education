@@ -1,21 +1,11 @@
 import classes from './Checkout.module.css'
-import {FC, FormEventHandler, LegacyRef, MouseEventHandler, MutableRefObject, useRef, useState} from "react";
-
-interface ICheckout {
-    onCancel: MouseEventHandler<HTMLButtonElement>
-}
-
-interface FormInputsValidity {
-    name: boolean,
-    city: boolean,
-    postal: boolean,
-    street: boolean
-}
+import {FC, FormEventHandler, MutableRefObject, useRef, useState} from "react";
+import {FormInputsValidity, ICheckout} from "../../types";
 
 const isEmpty = (value: string): boolean => value.trim() === ''
 const isNotFiveChars = (value: string): boolean => value.trim().length !== 5
 
-const Checkout: FC<ICheckout> = (props, context) => {
+const Checkout: FC<ICheckout> = (props) => {
     const [formInputsValidity, setFormInputsValidity] = useState<FormInputsValidity>({
         name: true,
         city: true,
@@ -51,6 +41,13 @@ const Checkout: FC<ICheckout> = (props, context) => {
 
         const formIsValid = enteredNameIsValid && enteredStreetIsValid && enteredCityIsValid && enteredPostalCodeIsValid
         if (!formIsValid) return
+
+        props.onSubmit({
+            name: enteredName,
+            city: enteredCity,
+            postal: enteredPostalCode,
+            street: enteredStreet
+        })
     }
 
     const controlClasses = (value: boolean): string => value ? classes.control : `${classes.control} ${classes.invalid}`

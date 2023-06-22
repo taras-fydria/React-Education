@@ -1,13 +1,10 @@
-import React, {FC, useContext} from "react";
+import React, {FC} from "react";
 import mealsImage from '../../assets/meals.jpg'
 import classes from "./Header.module.css";
 import HeaderCartButton from "./HeaderCartButton";
+import {header} from "../../types";
 
-interface iHeader {
-    onShowCart(): void
-}
-
-const Header: FC<iHeader> = ({onShowCart}) => {
+const Header: FC<header> = ({onShowCart}) => {
     return (
         <>
             <header className={classes.header}>
