@@ -1,1 +1,1 @@
-export * from './cart/store'
+export * as cart from './cart'

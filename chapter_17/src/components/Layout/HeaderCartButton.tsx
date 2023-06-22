@@ -1,8 +1,8 @@
 import {FC, useContext, useEffect, useState} from "react";
 import CartIcon from "../Cart/CartIcon";
 import classes from "./HeaderCartButton.module.css";
-import {CartContext} from "../../store";
 import {ICartContext, IHeaderCartButton} from "../../types";
+import {CartContext} from "../../store/cart";
 
 const HeaderCartButton: FC<IHeaderCartButton> = ({onClick}) => {
     const [buttonIsHighlighted, setButtonIsHighlighted] = useState<boolean>(false)

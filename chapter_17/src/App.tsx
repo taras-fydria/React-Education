@@ -2,7 +2,7 @@ import Header from "./components/Layout/Header";
 import Meals from "./components/Meals/Meals";
 import Cart from "./components/Cart/Cart";
 import {FC, useState} from "react";
-import CartProvider from "./store/cart/CartProvider";
+import {CartProvider} from "./store/cart";
 
 const App: FC = () => {
     const [cartIsShown, setCartIsShown] = useState<boolean>(false)

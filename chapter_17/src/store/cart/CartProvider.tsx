@@ -1,11 +1,11 @@
 import React, {FC, ReactNode, useReducer} from "react";
-import cartReducer, {cartStorage} from "./cart-reducer";
 import {CartReducerActions, ICartContext, ICartItem} from "../../types";
 import {CartContext} from "./cart-context";
+import cartReducer, {cartStorage} from "./cart-reducer";
 
 const initializer = (state: any) => state
 
-const CartProvider: FC<{ children: ReactNode }> = (props) => {
+export const CartProvider: FC<{ children: ReactNode }> = (props) => {
     const [cartState, dispatchCartAction] = useReducer(cartReducer, cartStorage.getStorage(), initializer)
 
     const addItemToCartHandler = (item: ICartItem) => {
@@ -32,5 +32,3 @@ const CartProvider: FC<{ children: ReactNode }> = (props) => {
         </CartContext.Provider>
     )
 }
-
-export default CartProvider

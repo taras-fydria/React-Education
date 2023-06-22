@@ -4,7 +4,7 @@ import Modal from "../UI/Modal";
 import CartItem from "./CartItem";
 import Checkout from "./Checkout";
 import {ICart, ICartContext, ICartItem, IOrder} from "../../types";
-import {CartContext} from "../../store";
+import {CartContext} from "../../store/cart";
 
 const Cart: FC<ICart> = ({onHideCart}) => {
     const cartCtx = useContext<ICartContext>(CartContext)
