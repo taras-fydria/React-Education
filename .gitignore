@@ -2,3 +2,5 @@
 ./**/node_modules
 /chapter_16_forms/package-lock.json
 /chapter_16_forms/.gitignore
+/chapter_18_start_redux/node_modules/
+/chapter_18_start_redux/package-lock.json

@@ -1,0 +1,19 @@
+{
+  "name": "chapter_18_start",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node redux-demo.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/react-redux": "^7.1.25",
+    "redux": "^4.2.1",
+    "ts-node": "^10.9.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.1.3"
+  }
+}
