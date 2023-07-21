@@ -1,15 +1,19 @@
-import {IState} from "./types.ts";
-import {createSlice, PayloadAction, SliceCaseReducers} from "@reduxjs/toolkit";
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+
+export interface IState {
+    counter: number
+    showCounter: boolean
+}
 
 export const initialState: IState = {
     counter: 0,
     showCounter: true
 }
-export const counterSlice = createSlice<IState, SliceCaseReducers<IState>>({
+export const counterSlice = createSlice({
     name: 'counter',
     initialState,
     reducers: {
-        increment(state: IState, action: PayloadAction) {
+        increment(state: IState) {
             state.counter++
         },
         decrement(state: IState) {
@@ -23,4 +27,6 @@ export const counterSlice = createSlice<IState, SliceCaseReducers<IState>>({
         }
     }
 })
+
+export const counterActions = counterSlice.actions
 

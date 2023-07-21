@@ -1,20 +1,22 @@
 import classes from './Counter.module.css';
-import {useDispatch, useSelector} from "react-redux";
-import {counterActions, useAppDispatch} from "../../store";
-import {ActionType, IState} from "../../store/counter";
+import useAppSelector from "../../hooks/useAppSelector";
+import useAppDispatch from "../../hooks/useAppDispatch";
+import {counterActions} from "../../store/counter";
 
 export const Counter = () => {
-    const counter = useSelector<IState>(state => state.counter)
-    const showCounter = useSelector<IState>(state => state.showCounter)
+    const counter = useAppSelector(state => state.counter.counter)
+    const showCounter = useAppSelector(state => state.counter.showCounter)
     const dispatcher = useAppDispatch()
 
 
-    const incrementButtonClickHandler= (amount: number = 1) =>
-        dispatcher(counterActions.)
+    const incrementButtonClickHandler = () =>
+        dispatcher(counterActions.increment())
     const decrementButtonClickHandler = () =>
-        dispatcher({type: Actions.DECREMENT})
+        dispatcher(counterActions.decrement())
 
-    const toggleHandler = () => dispatcher({type: Actions.TOGGLE})
+    const increaseBtnClickHAndler = (number: number) => dispatcher(counterActions.increase(number))
+
+    const toggleHandler = () => dispatcher(counterActions.toggleCounter())
 
     return (
         <main className={classes.counter}>
@@ -23,10 +25,10 @@ export const Counter = () => {
                 <div className={classes.value}>{counter}</div>
             )}
             <div className={classes.counter}>
-                <button onClick={incrementButtonClickHandler.bind(null, 1)}>
+                <button onClick={incrementButtonClickHandler}>
                     Increment
                 </button>
-                <button onClick={incrementButtonClickHandler.bind(null, 5)}>
+                <button onClick={increaseBtnClickHAndler.bind(null, 5)}>
                     Increase By 5
                 </button>
                 <button onClick={decrementButtonClickHandler}>
