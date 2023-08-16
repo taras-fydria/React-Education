@@ -1,8 +1,5 @@
-/.idea
-./**/node_modules
-./**/package-lock.json
-/chapter_16_forms/package-lock.json
-/chapter_16_forms/.gitignore
-/chapter_18_start_redux/node_modules/
-/chapter_18_start_redux/package-lock.json
-/chapter_18_react_redux/package-lock.json
+.idea
+.vscode/*
+!.vscode/extensions.json
+**/node_modules
+**/package-lock.json
